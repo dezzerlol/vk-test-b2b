@@ -4,6 +4,7 @@ import * as dayjs from 'dayjs'
 import 'dayjs/locale/ru'
 import { FormEvent, useState } from 'react'
 import styles from './App.module.css'
+import { notifications } from '@mantine/notifications'
 
 const TOWERS = ['A', 'B'] as const
 const FLOORS = Array.from({ length: 27 }, (_, k) => `${k + 1}`).slice(2)
@@ -21,7 +22,6 @@ const initialValues = {
 
 const App = () => {
   const [form, setForm] = useState(initialValues)
-
   const [timeError, setTimeError] = useState('')
 
   const resetForm = () => {
@@ -53,6 +53,11 @@ const App = () => {
     })
 
     console.log(data)
+    notifications.show({
+      title: 'Успех',
+      message: 'Успешно создано бронирование',
+      
+    })
 
     setTimeError('')
   }
@@ -116,12 +121,14 @@ const App = () => {
               label='Время начала'
               name='timeStart'
               required
+              value={form.timeStart}
               onChange={(e) => handleInputChange('timeStart', e.currentTarget.value)}
             />
             <TimeInput
               label='Время окончания'
               name='timeEnd'
               required
+              value={form.timeEnd}
               error={timeError}
               onChange={(e) => handleInputChange('timeEnd', e.currentTarget.value)}
             />
