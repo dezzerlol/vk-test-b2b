@@ -1,12 +1,12 @@
-import { Button, Select, Textarea, Title } from '@mantine/core'
+import { Button, NativeSelect, Textarea, Title } from '@mantine/core'
 import { DateInput, DatesProvider, TimeInput } from '@mantine/dates'
-import * as dayjs from 'dayjs'
+import { notifications } from '@mantine/notifications'
+import dayjs from 'dayjs'
 import 'dayjs/locale/ru'
 import { FormEvent, useState } from 'react'
 import styles from './App.module.css'
-import { notifications } from '@mantine/notifications'
 
-const TOWERS = ['A', 'B'] as const
+const TOWERS = ['A', 'B']
 const FLOORS = Array.from({ length: 27 }, (_, k) => `${k + 1}`).slice(2)
 const ROOMS = Array.from({ length: 10 }, (_, k) => `${k + 1}`)
 
@@ -56,7 +56,6 @@ const App = () => {
     notifications.show({
       title: 'Успех',
       message: 'Успешно создано бронирование',
-      
     })
 
     setTimeError('')
@@ -79,32 +78,32 @@ const App = () => {
       <div className={styles.booking_container}>
         <Title order={6}>Форма бронирования переговорной</Title>
         <form className={styles.booking_form} onSubmit={handleSubmit}>
-          <Select
+          <NativeSelect
             data={TOWERS}
             placeholder='Выберите башню...'
             label='Башня'
             name='tower'
             required
             value={form.tower}
-            onChange={(v) => handleInputChange('tower', v)}
+            onChange={(e) => handleInputChange('tower', e.currentTarget.value)}
           />
-          <Select
+          <NativeSelect
             data={FLOORS}
             placeholder='Выберите этаж...'
             label='Этаж'
             name='floor'
             required
             value={form.floor}
-            onChange={(v) => handleInputChange('floor', v)}
+            onChange={(e) => handleInputChange('floor', e.currentTarget.value)}
           />
-          <Select
+          <NativeSelect
             data={ROOMS}
             placeholder='Выберите переговорную...'
             label='Переговорная'
             name='room'
             required
             value={form.room}
-            onChange={(v) => handleInputChange('room', v)}
+            onChange={(e) => handleInputChange('room', e.currentTarget.value)}
           />
           <DatesProvider settings={{ locale: 'ru' }}>
             <DateInput
