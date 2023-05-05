@@ -1,0 +1,31 @@
+.page_container {
+  background-color: #f5f5f5;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.booking_container {
+  background-color: white;
+  padding: 1rem;
+  width: 400px;
+  min-width: 200px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.booking_form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form_buttons {
+  display: flex;
+  justify-content: space-between;
+}
